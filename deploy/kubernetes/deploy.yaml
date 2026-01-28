@@ -110,7 +110,7 @@ metadata:
   namespace: carts
 ---
 apiVersion: v1
-data: null
+data: {}
 kind: ConfigMap
 metadata:
   name: catalog
@@ -135,7 +135,7 @@ metadata:
   namespace: orders
 ---
 apiVersion: v1
-data: null
+data: {}
 kind: ConfigMap
 metadata:
   name: rabbitmq
@@ -436,6 +436,7 @@ spec:
           protocol: TCP
         resources:
           limits:
+            cpu: 256m
             memory: 128Mi
           requests:
             cpu: 128m
@@ -506,6 +507,7 @@ spec:
           protocol: TCP
         resources:
           limits:
+            cpu: 512m
             memory: 512Mi
           requests:
             cpu: 128m
@@ -560,6 +562,13 @@ spec:
         - containerPort: 8000
           name: dynamodb
           protocol: TCP
+        resources:
+          limits:
+            cpu: 512m
+            memory: 512Mi
+          requests:
+            cpu: 256m
+            memory: 256Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -639,6 +648,7 @@ spec:
           successThreshold: 3
         resources:
           limits:
+            cpu: 512m
             memory: 256Mi
           requests:
             cpu: 128m
@@ -711,6 +721,13 @@ spec:
         - containerPort: 3306
           name: mysql
           protocol: TCP
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 512Mi
+          requests:
+            cpu: 500m
+            memory: 256Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -758,6 +775,7 @@ spec:
           protocol: TCP
         resources:
           limits:
+            cpu: 512m
             memory: 256Mi
           requests:
             cpu: 128m
@@ -812,6 +830,13 @@ spec:
         - containerPort: 6379
           name: redis
           protocol: TCP
+        resources:
+          limits:
+            cpu: 256m
+            memory: 256Mi
+          requests:
+            cpu: 128m
+            memory: 128Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -897,6 +922,7 @@ spec:
           successThreshold: 3
         resources:
           limits:
+            cpu: 1000m
             memory: 512Mi
           requests:
             cpu: 128m
@@ -995,6 +1021,13 @@ spec:
         - containerPort: 15672
           name: http
           protocol: TCP
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 512Mi
+          requests:
+            cpu: 256m
+            memory: 256Mi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -1045,6 +1078,7 @@ spec:
           protocol: TCP
         resources:
           limits:
+            cpu: 1000m
             memory: 512Mi
           requests:
             cpu: 128m
